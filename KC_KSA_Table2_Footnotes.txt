@@ -1,0 +1,20 @@
+TABLE 2 FOOTNOTES:
+================================================================================
+
+* Exclusion of Citation Outlier:
+  The highest-cited record in the KC-specific dataset was Wagoner et al. (1997, 
+  n=499 citations), a general corneal injury review published by KKESH. This 
+  paper represents a 4.5× gap over the next-highest cited paper (n=109) and 
+  predates the thematic focus on keratoconus-specific research. This outlier has 
+  been excluded from citation metrics and included as a historical reference 
+  instead. This exclusion strengthens the validity of citation analysis by 
+  focusing on papers within the study's scope and prevents one seminal review 
+  from dominating aggregate statistics.
+
+* Broad CXL Application (Rank 10):
+  The paper ranked 10 (Anwar et al., 2011) applies corneal crosslinking to 
+  infectious keratitis treatment rather than KC management. It is included here 
+  because CXL is a major KC therapeutic innovation. This demonstrates the broader 
+  translational impact of KC research on corneal disease management.
+
+================================================================================

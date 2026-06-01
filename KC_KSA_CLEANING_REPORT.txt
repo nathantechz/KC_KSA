@@ -1,0 +1,55 @@
+================================================================================
+KERATOCONUS SAUDI ARABIA (KC_KSA) - DATA CLEANING REPORT
+Generated: 2026-06-01
+================================================================================
+
+INPUT FILES:
+- pubmed_csv-keratoconu-set.csv (242 records)
+- scopus_export_Jun 1-2026_c5292b85-5b5e-4737-b757-37ed3169cfab.csv (1,281 records)
+
+PROCESSING STEPS:
+1. ✓ Merged both datasets (combined: 1,523 records)
+2. ✓ Removed DOI duplicates (267 records removed)
+3. ✓ Removed title duplicates (13 records removed)
+4. ✓ Filtered for Saudi papers only (876 non-Saudi records removed)
+5. ✓ Identified missing affiliations (30 records flagged)
+6. ✓ Created clean master spreadsheet with standardized columns
+
+FINAL OUTPUT:
+- Total records in final dataset: 367
+- Records with missing affiliations: 30 (flagged in separate file)
+- Year range: 1990 - 2026
+- Average citations per paper: 19.6
+
+SOURCE BREAKDOWN:
+- Scopus: 337 records (91.8%)
+- PubMed: 30 records (8.2%)
+
+OUTPUT COLUMNS:
+- title: Paper title
+- year: Publication year
+- authors: Author names
+- affiliations: Author affiliations and institutions
+- journal: Journal/Conference name
+- citations: Citation count
+- keywords: Author and index keywords
+- affiliation_missing: Boolean flag (True if affiliation data is missing)
+- source: Database source (PubMed or Scopus)
+- doi: Digital Object Identifier
+
+OUTPUT FILES:
+1. KC_KSA_clean_master.csv (253 KB, 367 records)
+   - Main clean dataset with all records
+   
+2. KC_KSA_flagged_missing_affiliations.csv (3.9 KB)
+   - 30 records with missing or incomplete affiliation data
+   - Review these records and update manually if needed
+
+QUALITY NOTES:
+- Records filtered to include Saudi institutions/authors/journals
+- Duplicates removed based on DOI and title matching
+- All missing values represented as empty strings
+- Data sorted by year (descending)
+- Ready for bibliometric analysis and systematic review
+
+================================================================================
