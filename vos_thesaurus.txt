@@ -1,11 +1,59 @@
-covid-19	
-molecular docking	
-anticancer	
-apoptosis	
-md simulations	
-vegfr-2	
-oxidative stress	
-in silico	
-saudi arabia	
-case report	
-wound healing	
+corneal cross-linking	corneal collagen cross-linking
+corneal crosslinking	corneal collagen cross-linking
+cross-linking	corneal collagen cross-linking
+crosslinking	corneal collagen cross-linking
+cxl	corneal collagen cross-linking
+accelerated corneal collagen cross-linking	corneal collagen cross-linking
+epithelium off corneal collagen cross linking	corneal collagen cross-linking
+collagen cross-linking	corneal collagen cross-linking
+pkp	penetrating keratoplasty
+keratoplasty, penetrating	penetrating keratoplasty
+dalk	deep anterior lamellar keratoplasty
+deep lamellar keratoplasty	deep anterior lamellar keratoplasty
+dsaek	descemet stripping automated endothelial keratoplasty
+dmek	descemet membrane endothelial keratoplasty
+corneal transplantation	keratoplasty
+corneal transplant	keratoplasty
+cornea transplantation	keratoplasty
+intrastromal corneal ring segments	intracorneal ring segments
+intracorneal ring segment	intracorneal ring segments
+icrs	intracorneal ring segments
+intacs	intracorneal ring segments
+keraring	intracorneal ring segments
+icl	implantable collamer lens
+phakic intraocular lenses	phakic intraocular lens
+pentacam	scheimpflug imaging
+scheimpflug	scheimpflug imaging
+scheimpflug tomography	scheimpflug imaging
+corneal tomography	corneal topography
+laser in situ keratomileusis	lasik
+bcva	best corrected visual acuity
+ucva	uncorrected visual acuity
+cdva	best corrected visual acuity
+corrected distance visual acuity	best corrected visual acuity
+graft failure	corneal graft failure
+graft rejection	corneal graft rejection
+graft survival	corneal graft survival
+ksa	saudi arabia
+kingdom of saudi arabia	saudi arabia
+vsx1	vsx1 gene
+sod1	sod1 gene
+znf469	znf469 gene
+excimer laser ablation	excimer laser
+lasers, excimer	excimer laser
+fs laser	femtosecond laser
+optical coherence tomography	optical coherence tomography
+tomography, optical coherence	optical coherence tomography
+intraoperative optical coherence tomography	intraoperative oct
+intraoperative optical coherent tomography	intraoperative oct
+cornea edema	corneal edema
+cornea perforation	corneal perforation
+cornea disease	corneal disease
+cornea stroma	corneal stroma
+cornea epithelium	corneal epithelium
+descemet membrane	descemet's membrane
+fuchs endothelial dystrophy	fuchs endothelial corneal dystrophy
+corneal stromal dystrophy	corneal dystrophy
+cornea dystrophy	corneal dystrophy
+kerotoconus	keratoconus
+keratoconic	keratoconus
