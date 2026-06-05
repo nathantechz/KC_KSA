@@ -59,9 +59,12 @@ def parse_keywords(s):
     return tokens
 
 df = pd.read_csv(base_path / "KC_KSA_kc_specific_enriched.csv")
+df = df[(df['year'] >= 2000) & (df['year'] <= 2025)].copy()
+assert len(df) == 99, f"Expected 99 rows, got {len(df)}"
+print(f"KC-specific 2000-2025: {len(df)} records ✓")
 
-early_df = df[df["year"].between(2000, 2012)]
-late_df  = df[df["year"].between(2013, 2024)]
+early_df = df[(df["year"] >= 2000) & (df["year"] <= 2012)]
+late_df  = df[(df["year"] >= 2013) & (df["year"] <= 2024)]
 
 early_kw = Counter(k for s in early_df["all_keywords"].dropna() for k in parse_keywords(s))
 late_kw  = Counter(k for s in late_df["all_keywords"].dropna()  for k in parse_keywords(s))
@@ -80,6 +83,11 @@ shared    = early_set & late_set
 print(f"Early period keywords with data: {len(early_kw)} unique, showing top {N_EARLY}")
 print(f"Late  period keywords with data: {len(late_kw)} unique, showing top {N_LATE}")
 print(f"Shared (bold): {sorted(shared)}")
+print(f"\nKeratoconus frequency:")
+print(f"  Early 2000-2012 : {early_kw.get('keratoconus', 0)}")
+print(f"  Late  2013-2024 : {late_kw.get('keratoconus', 0)}")
+print(f"\nEarly period papers : {len(early_df)} | Late period papers: {len(late_df)}")
+print(f"Papers outside periods (2025): {len(df) - len(early_df) - len(late_df)}")
 
 # ── Plot ──────────────────────────────────────────────────────────────────────
 TEAL   = "#2A9D8F"

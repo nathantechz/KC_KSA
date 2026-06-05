@@ -11,7 +11,8 @@ kc_specific_file = base_path / "KC_KSA_kc_specific.csv"
 
 print("Loading KC_KSA_kc_specific.csv...")
 df = pd.read_csv(kc_specific_file)
-df = df[df['year'].between(2000, 2025)].copy()
+df = df[(df['year'] >= 2000) & (df['year'] <= 2025)].copy()
+assert len(df) == 99, f"Expected 99 rows, got {len(df)}"
 
 print(f"Total KC-specific records (2000-2025): {len(df)}")
 
@@ -28,7 +29,7 @@ def extract_institutions(affiliation_str):
 # Order matters: more specific patterns should come first.
 CANONICAL_INSTITUTIONS = [
     ("King Khaled Eye Specialist Hospital",
-     ["king khaled eye", "king khalid eye", "kkesh"]),
+     ["king khaled eye specialist", "king khalid eye specialist", "kkesh"]),
     ("King Saud University",
      ["king saud university", "king saud univ", " ksu"]),
     ("King Saud Medical City",
@@ -37,16 +38,20 @@ CANONICAL_INSTITUTIONS = [
      ["king abdulaziz university", "king abdulaziz univ", " kau"]),
     ("King Abdulaziz University Hospital",
      ["king abdulaziz university hospital"]),
+    ("King Abdulaziz Specialist Hospital Al Jouf",
+     ["king abdulaziz specialist hospital"]),
     ("King Saud Bin Abdulaziz University for Health Sciences (Riyadh)",
      ["king saud bin abdulaziz university for health sciences, riyadh",
       "king saud bin abdulaziz university for health sciences (ksau-hs), riyadh",
       "ksau-hs), riyadh"]),
     ("King Saud Bin Abdulaziz University for Health Sciences (Jeddah)",
-     ["king saud bin abdulaziz"]),  # catch-all: remaining strings are Jeddah
+     ["king saud bin abdulaziz"]),
     ("King Abdullah International Medical Research Center",
      ["king abdullah international medical research"]),
     ("King Fahad Armed Forces Hospital",
      ["king fahad armed forces"]),
+    ("King Khalid University Abha",
+     ["king khalid university"]),
     ("Dhahran Eye Specialist Hospital",
      ["dhahran eye"]),
     ("Magrabi Eye Hospital",
@@ -61,8 +66,6 @@ CANONICAL_INSTITUTIONS = [
      ["university of hafr al batin", "hafr al batin"]),
     ("Newcastle University",
      ["newcastle university", "newcastle upon tyne"]),
-    ("King Khalid University Abha",
-     ["king khalid university, abha"]),
     ("National Guard Hospital Medina",
      ["national guard hospital, medina", "national guard hospital, al-madinah"]),
     ("Taibah University",

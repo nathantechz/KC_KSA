@@ -48,9 +48,13 @@ def extract_country(aff_segment):
     return NAME_MAP.get(last)
 
 df = pd.read_csv(base_path / "KC_KSA_kc_specific.csv")
+df = df[(df['year'] >= 2000) & (df['year'] <= 2025)]
+assert len(df) == 99, f"Expected 99 rows, got {len(df)}"
+print(f"KC-specific 2000-2025: {len(df)} records ✓")
 
 # Per paper: collect unique countries, then count Saudi co-authorship pairs
 collab_counter = Counter()
+collab_total = 0
 for raw in df["affiliations"].dropna():
     countries = set()
     for seg in raw.split(";"):
@@ -58,11 +62,14 @@ for raw in df["affiliations"].dropna():
         if c:
             countries.add(c)
     if "Saudi Arabia" in countries:
-        for c in countries:
-            if c != "Saudi Arabia":
+        non_saudi = countries - {"Saudi Arabia"}
+        if non_saudi:
+            collab_total += 1
+            for c in non_saudi:
                 collab_counter[c] += 1
 
-print("Collaboration counts (papers co-authored with Saudi Arabia):")
+print(f"\nInternationally collaborative papers: {collab_total} / {len(df)} ({collab_total/len(df)*100:.1f}%)")
+print("\nPer-country co-authored paper counts (descending):")
 for country, n in sorted(collab_counter.items(), key=lambda x: -x[1]):
     print(f"  {n:3d}  {country}")
 
@@ -143,8 +150,8 @@ ax.set_title(
 ax.set_axis_off()
 
 fig.text(0.01, 0.01,
-         "Each unit = one paper with ≥1 Saudi and ≥1 non-Saudi affiliation. "
-         "Source: KC_KSA_kc_specific.csv (n=118 papers).",
+         f"Each unit = one paper with ≥1 Saudi and ≥1 non-Saudi affiliation.  "
+         f"Source: KC_KSA_kc_specific.csv, 2000–2025 (n=99 papers).",
          fontsize=8, color="#555555", style="italic")
 
 plt.tight_layout(rect=[0, 0.03, 1, 1])

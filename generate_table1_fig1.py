@@ -129,9 +129,11 @@ print("\n" + "="*80)
 print("FIGURE 1: ANNUAL PUBLICATION TREND")
 print("="*80)
 
-# Filter to analysis period: 2000-2025 (exclude pre-2000 sparse years and partial 2026)
-df = df[df['year'].between(2000, 2025)].copy()
+# Filter to analysis period: 2000-2025
+df = df[(df['year'] >= 2000) & (df['year'] <= 2025)].copy()
+assert len(df) == 323, f"Expected 323 rows, got {len(df)}"
 total_records = len(df)
+print(f"Broad dataset 2000-2025: {total_records} records ✓")
 
 # Count publications per year
 pub_per_year = df.groupby('year').size().reset_index(name='count')
@@ -143,11 +145,8 @@ print(pub_per_year.head(10).to_string(index=False))
 # Create figure with high DPI for publication
 fig, ax = plt.subplots(figsize=(14, 8), dpi=300)
 
-# Separate 2025 (most recent complete year) — no partial-year hatching needed
-complete_years = pub_per_year.copy()
-
 # Plot bars for all years 2000-2025
-bars_complete = ax.bar(complete_years['year'], complete_years['count'],
+bars_complete = ax.bar(pub_per_year['year'], pub_per_year['count'],
                         color='#2E86AB', alpha=0.8, width=0.8, edgecolor='black', linewidth=0.5,
                         label='Complete year')
 
@@ -168,14 +167,6 @@ vision_year = 2016
 ax.axvline(x=cxl_year, color='#F18F01', linestyle='--', linewidth=2.5, alpha=0.7, label='2008: CXL widely adopted')
 ax.axvline(x=vision_year, color='#C73E1D', linestyle='--', linewidth=2.5, alpha=0.7, label='2016: Saudi Vision 2030')
 
-# Mark 2002-2003 gap (real data artifact) - more visible
-ax.axvspan(2001.5, 2003.5, alpha=0.15, color='#FFB6C6', zorder=1)
-
-# Add annotation for 2002-2003 gap
-ax.text(2002.5, ax.get_ylim()[1] * 0.95, 'No publications\nindexed 2002-2003', 
-       ha='center', fontsize=9, style='italic', fontweight='bold',
-       bbox=dict(boxstyle='round,pad=0.5', facecolor='#FFB6C6', alpha=0.9, edgecolor='red', linewidth=1.5))
-
 # Find peak publication year and add annotation
 peak_year_data = pub_per_year[pub_per_year['year'] <= 2025]
 peak_idx = peak_year_data['count'].idxmax()
@@ -194,7 +185,7 @@ ax.annotate(f'Peak: {peak_count} publications',
 # Labels and formatting
 ax.set_xlabel('Year', fontsize=13, fontweight='bold')
 ax.set_ylabel('Number of Publications', fontsize=13, fontweight='bold')
-ax.set_title('Annual Publication Trend: Keratoconus in Saudi Arabia (2000–2025)',
+ax.set_title('Annual Publication Trend: Keratoconus in Saudi Arabia (2000-2025)',
              fontsize=15, fontweight='bold', pad=20)
 
 # Grid
@@ -204,13 +195,7 @@ ax.set_axisbelow(True)
 # Set y-axis limits
 ax.set_ylim(0, 58)
 
-# Create custom legend entries
-pink_patch = mpatches.Patch(color='#FFB6C6', alpha=0.15, label='Early period (sparse data)')
 handles, labels = ax.get_legend_handles_labels()
-handles.append(pink_patch)
-labels.append('Early period (sparse data)')
-
-# Update legend with custom patch
 ax.legend(handles, labels, loc='upper left', fontsize=10, framealpha=0.95)
 
 # Add statistics text box
